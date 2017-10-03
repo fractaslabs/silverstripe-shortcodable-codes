@@ -1,0 +1,12 @@
+---
+Name: shortcodable-codes
+---
+
+Shortcodable:
+  shortcodable_classes:
+    - FacebookShortcode
+    - IframeShortcode
+    - InstagramShortcode
+    - TwitterShortcode
+    - VimeoShortcode
+    - YoutubeShortcode
