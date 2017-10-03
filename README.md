@@ -47,4 +47,4 @@ Bugs are tracked on [github.com](https://github.com/fractaslabs/silverstripe-sho
 
 
 ## Licence
- * See [Licence](https://github.com/fractaslabs/silverstripe-shortcodable-codes/LICENSE)
+ * See [Licence](https://github.com/fractaslabs/silverstripe-shortcodable-codes/blob/3.0/LICENSE)
