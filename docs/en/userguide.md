@@ -42,7 +42,7 @@ To view the Twitter video is necessary to mark the checkbox Is Video.
 
 ### Vimeo shortcode
 Enables display of Vimeo videos. Into the field Link you need to insert the Vimeo video ID like so:
-![Vimeo video ID example](docs/en/images/vimeo-video-id-example.png)
+![Vimeo video ID example](https://github.com/fractaslabs/silverstripe-shortcodable-codes/blob/3.0/docs/en/images/vimeo-video-id-example.png)
 
 Width and Height fields are optional and if they are not replaced receive defaults of 640px or 390px. If the default values are modified, it is necessary to keep the ratio of 16:9.
 
@@ -50,6 +50,6 @@ Width and Height fields are optional and if they are not replaced receive defaul
 
 ### YouTube shortcode
 Enables display of YouTube videos. Into the field link you need to insert a YouTube video ID like so:
-![YouTube video ID example](docs/en/images/youtube-video-id-example.png)
+![YouTube video ID example](https://github.com/fractaslabs/silverstripe-shortcodable-codes/blob/3.0/docs/en/images/youtube-video-id-example.png)
 
 Width and Height fields are optional and if they are not replaced receive defaults of 640px or 390px. If the default values are modified, it is necessary to keep the ratio of 16: 9.
