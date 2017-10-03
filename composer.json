@@ -1,0 +1,24 @@
+{
+  "name": "fractas/silverstripe-shortcodable-codes",
+  "description": "Custom shortcodes for Shortcodable module",
+  "type": "silverstripe-module",
+  "homepage": "http://github.com/fractas/silverstripe-shortcodable-codes",
+  "keywords": ["silverstripe", "shortcode", "silverstripe shortcodes"],
+  "license": "BSD-3-Clause",
+  "support": {
+    "issues": "http://github.com/fractas/silverstripe-shortcodable-codes/issues"
+  },
+  "require": {
+    "silverstripe/cms": "~3.1",
+    "silverstripe/framework": "~3.1",
+    "sheadawson/silverstripe-shortcodable": "^3.0"
+  },
+  "extra": {
+    "installer-name": "shortcodable-codes",
+    "screenshots": [
+      "docs/en/images/shortcode-placeholders.png",
+      "docs/en/images/vimeo-video-id-example.png",
+      "docs/en/images/youtube-video-id-example.png"
+    ]
+  }
+}
