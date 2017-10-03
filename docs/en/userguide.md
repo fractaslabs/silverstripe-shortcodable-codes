@@ -1,7 +1,7 @@
 ## Overview
 This documentation contains CMS usage and screenshoots of available rich-media shortcodes.
 Each shortcode for easier visual representation within the WYSIWYG editor is displayed as placeholder image in the colors of the brand, with a link and an optional title, as shown on image:
-![Shortcode placeholders](docs/en/images/shortcode-placeholders.png)
+![Shortcode placeholders](https://github.com/fractaslabs/silverstripe-shortcodable-codes/blob/3.0/docs/en/images/shortcode-placeholders.png)
 
 ### Facebook Shortcode
 Allows you to display Facebook posts and videos. You can not embed a Facebook profile or any other Facebook Widget except posts and videos.
