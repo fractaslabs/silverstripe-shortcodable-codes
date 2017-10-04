@@ -1,4 +1,4 @@
-# SilverStripe Shortodable codes 3.0
+# SilverStripe Shortcodable codes 3.0
 
 ## Overview
 Couple of Rich-media content embeds based on [Shortcodable module](https://github.com/sheadawson/silverstripe-shortcodable/) for SilverStripe 3.
