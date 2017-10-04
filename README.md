@@ -1,5 +1,7 @@
+# SilverStripe Shortodable codes 3.0
+
 ## Overview
-Couple of Rich-media content embeds based on [Shortcodable module](https://github.com/sheadawson/silverstripe-shortcodable/).
+Couple of Rich-media content embeds based on [Shortcodable module](https://github.com/sheadawson/silverstripe-shortcodable/) for SilverStripe 3.
 
 Available Shortcodes:
  * Facebook (posts, video)
@@ -19,7 +21,7 @@ Available Shortcodes:
 ## Installation
  * Install via Composer
 ```
-composer require fractaslabs/silverstripe-shortcodable-codes
+composer require fractaslabs/silverstripe-shortcodable-codes ^1.0
 ```
  * Choose and add which Shortcodes you wanna enable via YAML configuration:
 ```yaml
