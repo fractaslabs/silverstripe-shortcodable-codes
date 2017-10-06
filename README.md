@@ -41,7 +41,7 @@ Shortcodable:
 
 
 ## CMS usage
- * See [Docs](https://github.com/fractaslabs/silverstripe-shortcodable-codes/docs/en/userguide.md)
+ * See [Docs](https://github.com/fractaslabs/silverstripe-shortcodable-codes/blob/3.0/docs/en/userguide.md)
 
 
 ## Bugtracker
