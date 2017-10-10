@@ -1,0 +1,12 @@
+---
+Name: shortcodable-codes
+---
+
+Shortcodable:
+  shortcodable_classes:
+    - Fractas\ShortcodableCodes\FacebookShortcode
+    - Fractas\ShortcodableCodes\IframeShortcode
+    - Fractas\ShortcodableCodes\InstagramShortcode
+    - Fractas\ShortcodableCodes\TwitterShortcode
+    - Fractas\ShortcodableCodes\VimeoShortcode
+    - Fractas\ShortcodableCodes\YoutubeShortcode
