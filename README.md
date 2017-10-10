@@ -13,8 +13,7 @@ Available Shortcodes:
 
 
 ## Requirements
- * SilverStripe Framework 4+
- * SilverStripe CMS 4+
+ * SilverStripe 4+
  * Shortcodable
 
 
@@ -41,7 +40,7 @@ Shortcodable:
 
 
 ## CMS usage
- * See [Docs](https://github.com/fractaslabs/silverstripe-shortcodable-codes/docs/en/userguide.md)
+ * See [Docs](https://github.com/fractaslabs/silverstripe-shortcodable-codes/blob/master/docs/en/userguide.md)
 
 
 ## Bugtracker
