@@ -1,4 +1,5 @@
 # SilverStripe Shortcodable codes 3.0
+[![Build Status](https://travis-ci.org/fractaslabs/silverstripe-shortcodable-codes.svg?branch=3.0)](https://travis-ci.org/fractaslabs/silverstripe-shortcodable-codes)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fractaslabs/silverstripe-shortcodable-codes/badges/quality-score.png?b=3.0)](https://scrutinizer-ci.com/g/fractaslabs/silverstripe-shortcodable-codes/?branch=3.0)
 
 ## Overview
