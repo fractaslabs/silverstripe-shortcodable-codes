@@ -1,4 +1,5 @@
 # SilverStripe Shortcodable codes 3.0
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fractaslabs/silverstripe-shortcodable-codes/badges/quality-score.png?b=3.0)](https://scrutinizer-ci.com/g/fractaslabs/silverstripe-shortcodable-codes/?branch=3.0)
 
 ## Overview
 Couple of Rich-media content embeds based on [Shortcodable module](https://github.com/sheadawson/silverstripe-shortcodable/) for SilverStripe 3.
