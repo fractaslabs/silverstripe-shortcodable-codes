@@ -2,12 +2,16 @@
   "name": "fractaslabs/silverstripe-shortcodable-codes",
   "description": "Custom shortcodes for Shortcodable module",
   "type": "silverstripe-module",
-  "homepage": "http://github.com/fractas/silverstripe-shortcodable-codes",
+  "homepage": "http://github.com/fractaslabs/silverstripe-shortcodable-codes",
   "keywords": ["silverstripe", "shortcode", "silverstripe shortcodes"],
   "license": "BSD-3-Clause",
   "support": {
-    "issues": "http://github.com/fractas/silverstripe-shortcodable-codes/issues"
+    "issues": "http://github.com/fractaslabs/silverstripe-shortcodable-codes/issues"
   },
+  "authors": [{
+    "name": "Fractas Labs",
+    "homepage": "https://github.com/fractaslabs/"
+  }],
   "require": {
     "silverstripe/cms": "~3.1",
     "silverstripe/framework": "~3.1",
