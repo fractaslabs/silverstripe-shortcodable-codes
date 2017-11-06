@@ -1,6 +1,9 @@
 # SilverStripe Shortcodable codes 3.0
 [![Build Status](https://travis-ci.org/fractaslabs/silverstripe-shortcodable-codes.svg?branch=3.0)](https://travis-ci.org/fractaslabs/silverstripe-shortcodable-codes)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/fractaslabs/silverstripe-shortcodable-codes/badges/quality-score.png?b=3.0)](https://scrutinizer-ci.com/g/fractaslabs/silverstripe-shortcodable-codes/?branch=3.0)
+[![Latest Stable Version](https://poser.pugx.org/fractaslabs/silverstripe-seeder-unsplash-provider/v/stable)](https://packagist.org/packages/fractaslabs/silverstripe-seeder-unsplash-provider)
+[![Latest Unstable Version](https://poser.pugx.org/fractaslabs/silverstripe-seeder-unsplash-provider/v/unstable)](https://packagist.org/packages/fractaslabs/silverstripe-seeder-unsplash-provider)
+[![License](https://poser.pugx.org/fractaslabs/silverstripe-seeder-unsplash-provider/license)](https://packagist.org/packages/fractaslabs/silverstripe-seeder-unsplash-provider)
 
 ## Overview
 Couple of Rich-media content embeds based on [Shortcodable module](https://github.com/sheadawson/silverstripe-shortcodable/) for SilverStripe 3.
@@ -23,7 +26,7 @@ Available Shortcodes:
 ## Installation
  * Install via Composer
 ```
-composer require fractas/silverstripe-shortcodable-codes ^1.0
+composer require fractaslabs/silverstripe-shortcodable-codes ^1.0
 ```
  * Choose and add which Shortcodes you wanna enable via YAML configuration:
 ```yaml
