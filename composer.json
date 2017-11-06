@@ -1,5 +1,5 @@
 {
-  "name": "fractas/silverstripe-shortcodable-codes",
+  "name": "fractaslabs/silverstripe-shortcodable-codes",
   "description": "Custom shortcodes for Shortcodable module",
   "type": "silverstripe-module",
   "homepage": "http://github.com/fractas/silverstripe-shortcodable-codes",
