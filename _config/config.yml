@@ -5,6 +5,7 @@ Name: shortcodable-codes
 Shortcodable:
   shortcodable_classes:
     - FacebookShortcode
+    - FullWidthImageShortcode
     - IframeShortcode
     - InstagramShortcode
     - TwitterShortcode
