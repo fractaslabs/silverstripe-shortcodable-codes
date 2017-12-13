@@ -23,6 +23,9 @@
       "docs/en/images/shortcode-placeholders.png",
       "docs/en/images/vimeo-video-id-example.png",
       "docs/en/images/youtube-video-id-example.png"
-    ]
+    ],
+    "branch-alias": {
+      "dev-master": "2.x-dev"
+    }
   }
 }
