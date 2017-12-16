@@ -24,7 +24,7 @@ Available Shortcodes:
 ## Installation
  * Install via Composer
 ```
-composer require fractaslabs/silverstripe-shortcodable-codes "2.x-dev"
+composer require fractas/shortcodable-codes "2.x-dev"
 ```
  * Choose and add which Shortcodes you wanna enable via YAML configuration:
 ```yaml
