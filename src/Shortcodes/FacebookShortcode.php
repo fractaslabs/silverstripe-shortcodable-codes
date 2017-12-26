@@ -2,16 +2,16 @@
 
 namespace Fractas\ShortcodableCodes;
 
-use ViewableData;
-use ArrayData;
-use FieldList;
-use TextField;
-use CheckboxField;
+use SilverStripe\View\ArrayData;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\View\ViewableData;
 
 class FacebookShortcode extends ViewableData
 {
     private static $singular_name = 'Facebook Shortcode';
-    private static $plural_name   = 'Facebook Shortcodes';
+    private static $plural_name = 'Facebook Shortcodes';
 
     /**
      * @return mixed
@@ -22,13 +22,14 @@ class FacebookShortcode extends ViewableData
     }
 
     /**
-     * Parse the shortcode and render as a string, probably with a template
+     * Parse the shortcode and render as a string, probably with a template.
      *
-     * @param  array           $attributes the list of attributes of the shortcode
-     * @param  string          $content the shortcode content
-     * @param  ShortcodeParser $parser the ShortcodeParser instance
-     * @param  string          $shortcode the raw shortcode being parsed
-     * @return String
+     * @param array           $attributes the list of attributes of the shortcode
+     * @param string          $content    the shortcode content
+     * @param ShortcodeParser $parser     the ShortcodeParser instance
+     * @param string          $shortcode  the raw shortcode being parsed
+     *
+     * @return string
      */
     public static function parse_shortcode($arguments, $content, $parser, $shortcode)
     {
@@ -43,9 +44,9 @@ class FacebookShortcode extends ViewableData
 
         $data = new ArrayData(array(
             'Title' => (array_key_exists('title', $arguments)) ? $arguments['title'] : false,
-            'Link'  => (array_key_exists('link', $arguments)) ? $arguments['link'] : false,
+            'Link' => (array_key_exists('link', $arguments)) ? $arguments['link'] : false,
             'Video' => (array_key_exists('isvideo', $arguments)) ? $arguments['isvideo'] : false,
-            'Width' => (array_key_exists('width', $arguments)) ? $arguments['width'] : false
+            'Width' => (array_key_exists('width', $arguments)) ? $arguments['width'] : false,
         ));
 
         // render with template
@@ -54,24 +55,24 @@ class FacebookShortcode extends ViewableData
 
     /**
      * Returns a list of fields for editing the shortcode's attributes
-     * in the insert shortcode popup window
+     * in the insert shortcode popup window.
      *
      * @return Fieldlist
      **/
     public function getShortcodeFields()
     {
         $fields = FieldList::create(
-            TextField::create('title', _t("ShortcodeExt.TITLE", "Title"))
+            TextField::create('title', _t('ShortcodeExt.TITLE', 'Title'))
                 ->setMaxLength(80)
                 ->setDescription('<span class="optional-shortcode-label">OPTIONAL:</span> add a title
 					that shows above this Facebook post. <br>Max. <strong>80 characters</strong>'),
-            TextField::create('link', _t("ShortcodeExt.LINK", "Link"))
+            TextField::create('link', _t('ShortcodeExt.LINK', 'Link'))
                 ->setDescription('<span class="required-shortcode-label">REQUIRED:</span> enter full
 					Facebook post link.'),
-            CheckboxField::create('isvideo', _t("ShortcodeExt.FBISVIDEO", "Is Video"))
+            CheckboxField::create('isvideo', _t('ShortcodeExt.FBISVIDEO', 'Is Video'))
                 ->setDescription('Choose this if you embeding Facebook video,<br> ie. <strong>
 					https://www.facebook.com/facebook/videos/10153231379946729/</strong>'),
-            TextField::create('width', _t("ShortcodeExt.WIDTH", "Width"))
+            TextField::create('width', _t('ShortcodeExt.WIDTH', 'Width'))
                 ->setValue('500')
                 ->setMaxLength('4')
                 ->setDescription('Enter desired post width (type only number ie. 500). Defaults to <strong>500px</strong>')
@@ -84,10 +85,11 @@ class FacebookShortcode extends ViewableData
      * Returns a link to an image to be displayed as a placeholder in the editor
      * In this example we make easy work of this task by using the placehold.it service
      * But you could also return a link to an image in the filesystem - perharps the first
-     * image in this FacebookShortcode a placeholder
+     * image in this FacebookShortcode a placeholder.
      *
      * @param array $attributes the list of attributes of the shortcode
-     * @return String
+     *
+     * @return string
      **/
     public function getShortcodePlaceHolder($attributes)
     {
@@ -98,7 +100,7 @@ class FacebookShortcode extends ViewableData
         $text .= "\r\n";
         $text .= $title;
         $text .= "\r\n";
-        $text .= '('. $link .')';
+        $text .= '('.$link.')';
 
         $params = array(
             'txt' => $text,
@@ -106,9 +108,9 @@ class FacebookShortcode extends ViewableData
             'h' => 200,
             'txtsize' => '20',
             'bg' => '3b5998',
-            'txtclr' => 'FFFFFF'
+            'txtclr' => 'FFFFFF',
         );
 
-        return 'https://placeholdit.imgix.net/~text?' . http_build_query($params);
+        return 'https://placeholdit.imgix.net/~text?'.http_build_query($params);
     }
 }

@@ -2,22 +2,21 @@
 
 namespace Fractas\ShortcodableCodes;
 
-use ViewableData;
-use ArrayData;
-use FieldList;
-use TextField;
 use RestfulService;
-use CheckboxField;
+use SilverStripe\View\ArrayData;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\View\ViewableData;
 
 class TwitterShortcode extends ViewableData
 {
     private static $singular_name = 'Twitter Shortcode';
-    private static $plural_name   = 'Twitter Shortcodes';
+    private static $plural_name = 'Twitter Shortcodes';
 
     /**
-     * The API base URL
+     * The API base URL.
      */
-
     const API_URL = 'https://publish.twitter.com/oembed';
 
     const API_VIDEO_URL = 'https://api.twitter.com/1.1/statuses/oembed.json';
@@ -31,13 +30,14 @@ class TwitterShortcode extends ViewableData
     }
 
     /**
-     * Parse the shortcode and render as a string, probably with a template
+     * Parse the shortcode and render as a string, probably with a template.
      *
-     * @param  array           $attributes the list of attributes of the shortcode
-     * @param  string          $content the shortcode content
-     * @param  ShortcodeParser $parser the ShortcodeParser instance
-     * @param  string          $shortcode the raw shortcode being parsed
-     * @return String
+     * @param array           $attributes the list of attributes of the shortcode
+     * @param string          $content    the shortcode content
+     * @param ShortcodeParser $parser     the ShortcodeParser instance
+     * @param string          $shortcode  the raw shortcode being parsed
+     *
+     * @return string
      */
     public static function parse_shortcode($arguments, $content, $parser, $shortcode)
     {
@@ -65,25 +65,25 @@ class TwitterShortcode extends ViewableData
         }
 
         try {
-            $conn = $fetch->request('', "GET", null, null, array(CURLOPT_SSL_VERIFYPEER => false));
+            $conn = $fetch->request('', 'GET', null, null, array(CURLOPT_SSL_VERIFYPEER => false));
             // check response status code
-            if ($conn->getStatusCode() == 200) {
+            if (200 == $conn->getStatusCode()) {
                 // read body from response
                 $body = $conn->getBody();
             } else {
                 // response status is not OK (send email)
                 $body = false;
                 $loginErr = false;
-                if ($conn->getStatusCode() == 404) {
-                    SS_Log::log(new Exception("(404) API is not available"), SS_Log::ERR);
-                } elseif ($conn->getStatusCode() == 503) {
-                    SS_Log::log(new Exception("(503) API is not available"), SS_Log::ERR);
-                } elseif ($conn->getStatusCode() == 500) {
-                    SS_Log::log(new Exception("(500) API is not available"), SS_Log::ERR);
-                } elseif ($conn->getStatusCode() == 403) {
-                    SS_Log::log(new Exception("(403) API is not available"), SS_Log::ERR);
-                } elseif ($conn->getStatusCode() == 401) {
-                    SS_Log::log(new Exception("(401) API is not available"), SS_Log::ERR);
+                if (404 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(404) API is not available'), SS_Log::ERR);
+                } elseif (503 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(503) API is not available'), SS_Log::ERR);
+                } elseif (500 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(500) API is not available'), SS_Log::ERR);
+                } elseif (403 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(403) API is not available'), SS_Log::ERR);
+                } elseif (401 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(401) API is not available'), SS_Log::ERR);
                 } else {
                     SS_Log::log(new Exception(print_r($conn, true)), SS_Log::ERR);
                 }
@@ -92,15 +92,16 @@ class TwitterShortcode extends ViewableData
             }
         } catch (Exception $e) {
             SS_Log::log(new Exception(print_r($e, true)), SS_Log::ERR);
+
             return false;
         }
 
         $urlDecode = json_decode(($body), 1);
 
         $data = new ArrayData(array(
-            'Title'    => (array_key_exists('title', $arguments)) ? $arguments['title'] : false,
-            'Data'    => ($urlDecode) ? $urlDecode['html'] : false,
-            'Video' => (array_key_exists('isvideo', $arguments)) ? $arguments['isvideo'] : false
+            'Title' => (array_key_exists('title', $arguments)) ? $arguments['title'] : false,
+            'Data' => ($urlDecode) ? $urlDecode['html'] : false,
+            'Video' => (array_key_exists('isvideo', $arguments)) ? $arguments['isvideo'] : false,
         ));
 
         // render with template
@@ -109,22 +110,22 @@ class TwitterShortcode extends ViewableData
 
     /**
      * Returns a list of fields for editing the shortcode's attributes
-     * in the insert shortcode popup window
+     * in the insert shortcode popup window.
      *
      * @return Fieldlist
      **/
     public function getShortcodeFields()
     {
         $fields = FieldList::create(
-            TextField::create('title', _t("ShortcodeExt.TITLE", "Title"))
+            TextField::create('title', _t('ShortcodeExt.TITLE', 'Title'))
                 ->setMaxLength(80)
                 ->setDescription('<span class="optional-shortcode-label">OPTIONAL:</span> add a title
 					that shows above this Twitter post. <br>Max. <strong>80 characters</strong>'),
-            TextField::create('link', _t("ShortcodeExt.LINK", "Link"))
+            TextField::create('link', _t('ShortcodeExt.LINK', 'Link'))
                 ->setDescription('<span class="required-shortcode-label">REQUIRED:</span> enter full
 					Twitter post link.<br>Example post: https://twitter.com/NatGeo/status/914340365834113025<br>
 					Example video: https://twitter.com/NatGeo/status/914143809100931072'),
-            CheckboxField::create('isvideo', _t("ShortcodeExt.ISVIDEO", "Is Video"))
+            CheckboxField::create('isvideo', _t('ShortcodeExt.ISVIDEO', 'Is Video'))
                 ->setDescription('Choose this if you wanna embed Twitter video.')
         );
 
@@ -135,10 +136,11 @@ class TwitterShortcode extends ViewableData
      * Returns a link to an image to be displayed as a placeholder in the editor
      * In this example we make easy work of this task by using the placehold.it service
      * But you could also return a link to an image in the filesystem - perharps the first
-     * image in this TwitterShortcode a placeholder
+     * image in this TwitterShortcode a placeholder.
      *
      * @param array $attributes the list of attributes of the shortcode
-     * @return String
+     *
+     * @return string
      **/
     public function getShortcodePlaceHolder($attributes)
     {
@@ -149,7 +151,7 @@ class TwitterShortcode extends ViewableData
         $text .= "\r\n";
         $text .= $title;
         $text .= "\r\n";
-        $text .= '('. $link .')';
+        $text .= '('.$link.')';
 
         $params = array(
             'txt' => $text,
@@ -157,9 +159,9 @@ class TwitterShortcode extends ViewableData
             'h' => 200,
             'txtsize' => '20',
             'bg' => '55acee',
-            'txtclr' => 'FFFFFF'
+            'txtclr' => 'FFFFFF',
         );
 
-        return 'https://placeholdit.imgix.net/~text?' . http_build_query($params);
+        return 'https://placeholdit.imgix.net/~text?'.http_build_query($params);
     }
 }

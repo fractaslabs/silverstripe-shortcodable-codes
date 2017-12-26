@@ -1,8 +1,7 @@
 ---
 Name: shortcodable-codes
 ---
-
-Shortcodable:
+SheaDawson\Shortcodable\Shortcodable:
   shortcodable_classes:
     - Fractas\ShortcodableCodes\FacebookShortcode
     - Fractas\ShortcodableCodes\IframeShortcode

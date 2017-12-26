@@ -2,20 +2,20 @@
 
 namespace Fractas\ShortcodableCodes;
 
-use ViewableData;
-use ArrayData;
-use FieldList;
-use TextField;
 use RestfulService;
-use CheckboxField;
+use SilverStripe\View\ArrayData;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\View\ViewableData;
 
 class InstagramShortcode extends ViewableData
 {
     private static $singular_name = 'Instagram Shortcode';
-    private static $plural_name   = 'Instagram Shortcodes';
+    private static $plural_name = 'Instagram Shortcodes';
 
     /**
-     * The API base URL
+     * The API base URL.
      */
     const API_URL = 'https://api.instagram.com/oembed';
 
@@ -28,13 +28,14 @@ class InstagramShortcode extends ViewableData
     }
 
     /**
-     * Parse the shortcode and render as a string, probably with a template
+     * Parse the shortcode and render as a string, probably with a template.
      *
-     * @param  array           $attributes the list of attributes of the shortcode
-     * @param  string          $content the shortcode content
-     * @param  ShortcodeParser $parser the ShortcodeParser instance
-     * @param  string          $shortcode the raw shortcode being parsed
-     * @return String
+     * @param array           $attributes the list of attributes of the shortcode
+     * @param string          $content    the shortcode content
+     * @param ShortcodeParser $parser     the ShortcodeParser instance
+     * @param string          $shortcode  the raw shortcode being parsed
+     *
+     * @return string
      */
     public static function parse_shortcode($arguments, $content, $parser, $shortcode)
     {
@@ -60,25 +61,25 @@ class InstagramShortcode extends ViewableData
         }
 
         try {
-            $conn = $fetch->request('', "GET", null, null, array(CURLOPT_SSL_VERIFYPEER => false));
+            $conn = $fetch->request('', 'GET', null, null, array(CURLOPT_SSL_VERIFYPEER => false));
             // check response status code
-            if ($conn->getStatusCode() == 200) {
+            if (200 == $conn->getStatusCode()) {
                 // read body from response
                 $body = $conn->getBody();
             } else {
                 // response status is not OK (send email)
                 $body = false;
                 $loginErr = false;
-                if ($conn->getStatusCode() == 404) {
-                    SS_Log::log(new Exception("(404) API is not available"), SS_Log::ERR);
-                } elseif ($conn->getStatusCode() == 503) {
-                    SS_Log::log(new Exception("(503) API is not available"), SS_Log::ERR);
-                } elseif ($conn->getStatusCode() == 500) {
-                    SS_Log::log(new Exception("(500) API is not available"), SS_Log::ERR);
-                } elseif ($conn->getStatusCode() == 403) {
-                    SS_Log::log(new Exception("(403) API is not available"), SS_Log::ERR);
-                } elseif ($conn->getStatusCode() == 401) {
-                    SS_Log::log(new Exception("(401) API is not available"), SS_Log::ERR);
+                if (404 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(404) API is not available'), SS_Log::ERR);
+                } elseif (503 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(503) API is not available'), SS_Log::ERR);
+                } elseif (500 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(500) API is not available'), SS_Log::ERR);
+                } elseif (403 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(403) API is not available'), SS_Log::ERR);
+                } elseif (401 == $conn->getStatusCode()) {
+                    SS_Log::log(new Exception('(401) API is not available'), SS_Log::ERR);
                 } else {
                     SS_Log::log(new Exception(print_r($conn, true)), SS_Log::ERR);
                 }
@@ -87,16 +88,17 @@ class InstagramShortcode extends ViewableData
             }
         } catch (Exception $e) {
             SS_Log::log(new Exception(print_r($e, true)), SS_Log::ERR);
+
             return false;
         }
 
         $urlDecode = json_decode(($body), 1);
 
         $data = new ArrayData(array(
-            'Title'    => (array_key_exists('title', $arguments)) ? $arguments['title'] : false,
-            'Data'    => ($urlDecode) ? $urlDecode['html'] : false,
+            'Title' => (array_key_exists('title', $arguments)) ? $arguments['title'] : false,
+            'Data' => ($urlDecode) ? $urlDecode['html'] : false,
             'Caption' => (array_key_exists('hidecaption', $arguments)) ? $arguments['hidecaption'] : false,
-            'Width' => (array_key_exists('width', $arguments)) ? $arguments['width'] : false
+            'Width' => (array_key_exists('width', $arguments)) ? $arguments['width'] : false,
         ));
 
         // render with template
@@ -105,7 +107,7 @@ class InstagramShortcode extends ViewableData
 
     /**
      * Returns a list of fields for editing the shortcode's attributes
-     * in the insert shortcode popup window
+     * in the insert shortcode popup window.
      *
      * @return Fieldlist
      **/
@@ -120,9 +122,9 @@ class InstagramShortcode extends ViewableData
                 ->setDescription('<span class="required-shortcode-label">REQUIRED:</span> enter full
 					Instagram post link. Example: <strong>https://www.instagram.com/p/BKKYSoNjEsr/</strong><br>
 					Do not include anything after last /.'),
-            CheckboxField::create('hidecaption', _t("ShortcodeExt.HIDECAPTION", "Hide Caption"))
+            CheckboxField::create('hidecaption', _t('ShortcodeExt.HIDECAPTION', 'Hide Caption'))
                 ->setDescription('Choose this if you embeding Instagram video'),
-            TextField::create('width', _t("ShortcodeExt.WIDTH", "Width"))
+            TextField::create('width', _t('ShortcodeExt.WIDTH', 'Width'))
                 ->setValue('612')
                 ->setMaxLength('4')
                 ->setDescription('Enter desired post width (type only number ie. 612). Defaults to <strong>612px</strong>')
@@ -135,10 +137,11 @@ class InstagramShortcode extends ViewableData
      * Returns a link to an image to be displayed as a placeholder in the editor
      * In this example we make easy work of this task by using the placehold.it service
      * But you could also return a link to an image in the filesystem - perharps the first
-     * image in this InstagramShortcode a placeholder
+     * image in this InstagramShortcode a placeholder.
      *
      * @param array $attributes the list of attributes of the shortcode
-     * @return String
+     *
+     * @return string
      **/
     public function getShortcodePlaceHolder($attributes)
     {
@@ -149,7 +152,7 @@ class InstagramShortcode extends ViewableData
         $text .= "\r\n";
         $text .= $title;
         $text .= "\r\n";
-        $text .= '('. $link .')';
+        $text .= '('.$link.')';
 
         $params = array(
             'txt' => $text,
@@ -157,9 +160,9 @@ class InstagramShortcode extends ViewableData
             'h' => 200,
             'txtsize' => '20',
             'bg' => '405de6',
-            'txtclr' => 'FFFFFF'
+            'txtclr' => 'FFFFFF',
         );
 
-        return 'https://placeholdit.imgix.net/~text?' . http_build_query($params);
+        return 'https://placeholdit.imgix.net/~text?'.http_build_query($params);
     }
 }

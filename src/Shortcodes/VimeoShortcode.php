@@ -2,15 +2,15 @@
 
 namespace Fractas\ShortcodableCodes;
 
-use ViewableData;
-use ArrayData;
-use FieldList;
-use TextField;
+use SilverStripe\View\ArrayData;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\View\ViewableData;
 
 class VimeoShortcode extends ViewableData
 {
     private static $singular_name = 'Vimeo Shortcode';
-    private static $plural_name   = 'Vimeo Shortcodes';
+    private static $plural_name = 'Vimeo Shortcodes';
 
     /**
      * @return mixed
@@ -21,13 +21,14 @@ class VimeoShortcode extends ViewableData
     }
 
     /**
-     * Parse the shortcode and render as a string, probably with a template
+     * Parse the shortcode and render as a string, probably with a template.
      *
-     * @param  array           $attributes the list of attributes of the shortcode
-     * @param  string          $content the shortcode content
-     * @param  ShortcodeParser $parser the ShortcodeParser instance
-     * @param  string          $shortcode the raw shortcode being parsed
-     * @return String
+     * @param array           $attributes the list of attributes of the shortcode
+     * @param string          $content    the shortcode content
+     * @param ShortcodeParser $parser     the ShortcodeParser instance
+     * @param string          $shortcode  the raw shortcode being parsed
+     *
+     * @return string
      */
     public static function parse_shortcode($arguments, $content, $parser, $shortcode)
     {
@@ -41,10 +42,10 @@ class VimeoShortcode extends ViewableData
         }
 
         $data = new ArrayData(array(
-            'Title'  => (array_key_exists('title', $arguments)) ? $arguments['title'] : false,
-            'Link'   => (array_key_exists('link', $arguments)) ? $arguments['link'] : false,
-            'Width'  => (array_key_exists('width', $arguments)) ? $arguments['width'] : false,
-            'Height' => (array_key_exists('height', $arguments)) ? $arguments['height'] : false
+            'Title' => (array_key_exists('title', $arguments)) ? $arguments['title'] : false,
+            'Link' => (array_key_exists('link', $arguments)) ? $arguments['link'] : false,
+            'Width' => (array_key_exists('width', $arguments)) ? $arguments['width'] : false,
+            'Height' => (array_key_exists('height', $arguments)) ? $arguments['height'] : false,
         ));
 
         // render with template
@@ -53,26 +54,26 @@ class VimeoShortcode extends ViewableData
 
     /**
      * Returns a list of fields for editing the shortcode's attributes
-     * in the insert shortcode popup window
+     * in the insert shortcode popup window.
      *
      * @return Fieldlist
      **/
     public function getShortcodeFields()
     {
         $fields = FieldList::create(
-            TextField::create('title', _t("ShortcodeExt.TITLE", "Title"))
+            TextField::create('title', _t('ShortcodeExt.TITLE', 'Title'))
                 ->setMaxLength(80)
                 ->setDescription('<span class="optional-shortcode-label">OPTIONAL:</span> add a title
 					that shows above this Vimeo video. <br>Max. <strong>80 characters</strong>'),
-            TextField::create('link', _t("ShortcodeExt.LINK", "Link"))
+            TextField::create('link', _t('ShortcodeExt.LINK', 'Link'))
                 ->setDescription('<span class="required-shortcode-label">REQUIRED:</span> enter here
 					ONLY Vimeo video ID, ie. <strong><a href="http://imgur.com/AyBarr2" target="_blank">
 					click for example image</a></strong>.'),
-            TextField::create('width', _t("ShortcodeExt.WIDTH", "Width"))
+            TextField::create('width', _t('ShortcodeExt.WIDTH', 'Width'))
                 ->setValue('640')
                 ->setMaxLength('4')
                 ->setDescription('Enter desired width (type only number ie. 640). Defaults to <strong>640px</strong>'),
-            TextField::create('height', _t("ShortcodeExt.HEIGHT", "Height"))
+            TextField::create('height', _t('ShortcodeExt.HEIGHT', 'Height'))
                 ->setValue('360')
                 ->setMaxLength('4')
                 ->setDescription('Enter desired height (type only number ie. 360). Defaults to <strong>360px</strong>.<br>
@@ -87,10 +88,11 @@ class VimeoShortcode extends ViewableData
      * In this example we make easy work of this task by using the placehold.it service
      * But you could also return a link to an image in the filesystem - perharps the first
      * image in this VimeoShortcode
-     * a placeholder
+     * a placeholder.
      *
      * @param array $attributes the list of attributes of the shortcode
-     * @return String
+     *
+     * @return string
      **/
     public function getShortcodePlaceHolder($attributes)
     {
@@ -101,7 +103,7 @@ class VimeoShortcode extends ViewableData
         $text .= "\r\n";
         $text .= $title;
         $text .= "\r\n";
-        $text .= '('. $link .')';
+        $text .= '('.$link.')';
 
         $params = array(
             'txt' => $text,
@@ -109,9 +111,9 @@ class VimeoShortcode extends ViewableData
             'h' => 200,
             'txtsize' => '20',
             'bg' => '1ab7ea',
-            'txtclr' => 'FFFFFF'
+            'txtclr' => 'FFFFFF',
         );
 
-        return 'https://placeholdit.imgix.net/~text?' . http_build_query($params);
+        return 'https://placeholdit.imgix.net/~text?'.http_build_query($params);
     }
 }
